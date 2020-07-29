@@ -38,6 +38,28 @@ dev.off()
 max_average <- average_steps[which.max(average_steps$total_steps),]
 max_average
 
+## Missing Values
+
+missing_values <- sum(is.na(activity_data))
+missing_values
+
+library(imputeTS)
+
+replaced_values <- na_mean(activity_data)
+head(replaced_values)
+summary(replaced_values)
+
+#missing_values_2 <- sum(is.na(replaced_values))
+#missing_values_2
+
+
+
+
+
+
+
+
+
 
 
 
