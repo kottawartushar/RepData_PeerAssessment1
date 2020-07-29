@@ -44,6 +44,7 @@ missing_values <- sum(is.na(activity_data))
 missing_values
 
 library(imputeTS)
+library(ggplot2)
 
 replaced_values <- na_mean(activity_data)
 head(replaced_values)
@@ -52,7 +53,15 @@ summary(replaced_values)
 #missing_values_2 <- sum(is.na(replaced_values))
 #missing_values_2
 
+new_sum_steps <- tapply(replaced_values$steps, replaced_values$date, FUN = sum, na.rm = TRUE)
+new_sum_steps
 
+qplot(new_sum_steps, xlab = "Total no. of steps taken each day", ylab = "Frequency", 
+      main = "Histogram with replaced missing values", binwidth = 1000)
+
+dev.copy(png, file = "plot3.png", width = 480, height = 480)
+
+dev.off()
 
 
 
